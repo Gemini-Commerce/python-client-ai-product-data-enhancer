@@ -1,7 +1,6 @@
 .github/workflows/python.yml
 .gitignore
 .gitlab-ci.yml
-.openapi-generator-ignore
 .travis.yml
 README.md
 aiproductdataenhancer/__init__.py
@@ -15,6 +14,7 @@ aiproductdataenhancer/models/__init__.py
 aiproductdataenhancer/models/aiproductdataenhancer_fill_product_data_request.py
 aiproductdataenhancer/models/aiproductdataenhancer_fill_product_data_response.py
 aiproductdataenhancer/models/aiproductdataenhancer_language_code.py
+aiproductdataenhancer/models/aiproductdataenhancer_product_data_to_fill.py
 aiproductdataenhancer/models/aiproductdataenhancer_product_information.py
 aiproductdataenhancer/models/protobuf_any.py
 aiproductdataenhancer/models/rpc_status.py
@@ -24,6 +24,7 @@ docs/AiProductDataEnhancerApi.md
 docs/AiproductdataenhancerFillProductDataRequest.md
 docs/AiproductdataenhancerFillProductDataResponse.md
 docs/AiproductdataenhancerLanguageCode.md
+docs/AiproductdataenhancerProductDataToFill.md
 docs/AiproductdataenhancerProductInformation.md
 docs/ProtobufAny.md
 docs/RpcStatus.md
@@ -38,6 +39,7 @@ test/test_ai_product_data_enhancer_api.py
 test/test_aiproductdataenhancer_fill_product_data_request.py
 test/test_aiproductdataenhancer_fill_product_data_response.py
 test/test_aiproductdataenhancer_language_code.py
+test/test_aiproductdataenhancer_product_data_to_fill.py
 test/test_aiproductdataenhancer_product_information.py
 test/test_protobuf_any.py
 test/test_rpc_status.py

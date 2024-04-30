@@ -43,7 +43,11 @@ class TestAiproductdataenhancerFillProductDataRequest(unittest.TestCase):
                     code = '', 
                     title = '', ),
                 product_data_to_fill = [
-                    ''
+                    aiproductdataenhancer.models.aiproductdataenhancer_product_data_to_fill.aiproductdataenhancerProductDataToFill(
+                        name = '', 
+                        value_set = [
+                            ''
+                            ], )
                     ],
                 domains_to_include = [
                     ''

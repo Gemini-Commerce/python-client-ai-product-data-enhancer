@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
 from aiproductdataenhancer.models.aiproductdataenhancer_language_code import AiproductdataenhancerLanguageCode
+from aiproductdataenhancer.models.aiproductdataenhancer_product_data_to_fill import AiproductdataenhancerProductDataToFill
 from aiproductdataenhancer.models.aiproductdataenhancer_product_information import AiproductdataenhancerProductInformation
 try:
     from typing import Self
@@ -35,7 +36,7 @@ class AiproductdataenhancerFillProductDataRequest(BaseModel):
     tenant_id: Optional[StrictStr] = Field(default=None, alias="tenantId")
     language_code: Optional[AiproductdataenhancerLanguageCode] = Field(default=None, alias="languageCode")
     product_information: Optional[AiproductdataenhancerProductInformation] = Field(default=None, alias="productInformation")
-    product_data_to_fill: Optional[List[StrictStr]] = Field(default=None, alias="productDataToFill")
+    product_data_to_fill: Optional[List[AiproductdataenhancerProductDataToFill]] = Field(default=None, alias="productDataToFill")
     domains_to_include: Optional[List[StrictStr]] = Field(default=None, alias="domainsToInclude")
     domains_to_exclude: Optional[List[StrictStr]] = Field(default=None, alias="domainsToExclude")
     __properties: ClassVar[List[str]] = ["tenantId", "languageCode", "productInformation", "productDataToFill", "domainsToInclude", "domainsToExclude"]
@@ -80,6 +81,13 @@ class AiproductdataenhancerFillProductDataRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of product_information
         if self.product_information:
             _dict['productInformation'] = self.product_information.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in product_data_to_fill (list)
+        _items = []
+        if self.product_data_to_fill:
+            for _item in self.product_data_to_fill:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['productDataToFill'] = _items
         return _dict
 
     @classmethod
@@ -95,7 +103,7 @@ class AiproductdataenhancerFillProductDataRequest(BaseModel):
             "tenantId": obj.get("tenantId"),
             "languageCode": obj.get("languageCode"),
             "productInformation": AiproductdataenhancerProductInformation.from_dict(obj.get("productInformation")) if obj.get("productInformation") is not None else None,
-            "productDataToFill": obj.get("productDataToFill"),
+            "productDataToFill": [AiproductdataenhancerProductDataToFill.from_dict(_item) for _item in obj.get("productDataToFill")] if obj.get("productDataToFill") is not None else None,
             "domainsToInclude": obj.get("domainsToInclude"),
             "domainsToExclude": obj.get("domainsToExclude")
         })
