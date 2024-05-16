@@ -85,15 +85,19 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AiProductDataEnhancerApi* | [**ai_product_data_enhancer_fill_product_data**](docs/AiProductDataEnhancerApi.md#ai_product_data_enhancer_fill_product_data) | **POST** /aiproductdataenhancer.AiProductDataEnhancer/FillProductData | 
+*AiProductDataEnhancerApi* | [**ai_product_data_enhancer_translate_data**](docs/AiProductDataEnhancerApi.md#ai_product_data_enhancer_translate_data) | **POST** /aiproductdataenhancer.AiProductDataEnhancer/TranslateData | 
 
 
 ## Documentation For Models
 
+ - [AiproductdataenhancerDataToTranslate](docs/AiproductdataenhancerDataToTranslate.md)
  - [AiproductdataenhancerFillProductDataRequest](docs/AiproductdataenhancerFillProductDataRequest.md)
  - [AiproductdataenhancerFillProductDataResponse](docs/AiproductdataenhancerFillProductDataResponse.md)
  - [AiproductdataenhancerLanguageCode](docs/AiproductdataenhancerLanguageCode.md)
  - [AiproductdataenhancerProductDataToFill](docs/AiproductdataenhancerProductDataToFill.md)
  - [AiproductdataenhancerProductInformation](docs/AiproductdataenhancerProductInformation.md)
+ - [AiproductdataenhancerTranslateDataRequest](docs/AiproductdataenhancerTranslateDataRequest.md)
+ - [AiproductdataenhancerTranslateDataResponse](docs/AiproductdataenhancerTranslateDataResponse.md)
  - [ProtobufAny](docs/ProtobufAny.md)
  - [RpcStatus](docs/RpcStatus.md)
 

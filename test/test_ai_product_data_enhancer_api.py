@@ -32,6 +32,12 @@ class TestAiProductDataEnhancerApi(unittest.TestCase):
         """
         pass
 
+    def test_ai_product_data_enhancer_translate_data(self) -> None:
+        """Test case for ai_product_data_enhancer_translate_data
+
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
