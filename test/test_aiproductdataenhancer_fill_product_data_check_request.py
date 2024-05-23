@@ -15,10 +15,10 @@
 import unittest
 import datetime
 
-from aiproductdataenhancer.models.aiproductdataenhancer_fill_product_data_response import AiproductdataenhancerFillProductDataResponse
+from aiproductdataenhancer.models.aiproductdataenhancer_fill_product_data_check_request import AiproductdataenhancerFillProductDataCheckRequest
 
-class TestAiproductdataenhancerFillProductDataResponse(unittest.TestCase):
-    """AiproductdataenhancerFillProductDataResponse unit test stubs"""
+class TestAiproductdataenhancerFillProductDataCheckRequest(unittest.TestCase):
+    """AiproductdataenhancerFillProductDataCheckRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -26,25 +26,26 @@ class TestAiproductdataenhancerFillProductDataResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> AiproductdataenhancerFillProductDataResponse:
-        """Test AiproductdataenhancerFillProductDataResponse
+    def make_instance(self, include_optional) -> AiproductdataenhancerFillProductDataCheckRequest:
+        """Test AiproductdataenhancerFillProductDataCheckRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `AiproductdataenhancerFillProductDataResponse`
+        # uncomment below to create an instance of `AiproductdataenhancerFillProductDataCheckRequest`
         """
-        model = AiproductdataenhancerFillProductDataResponse()
+        model = AiproductdataenhancerFillProductDataCheckRequest()
         if include_optional:
-            return AiproductdataenhancerFillProductDataResponse(
+            return AiproductdataenhancerFillProductDataCheckRequest(
+                tenant_id = '',
                 job_id = ''
             )
         else:
-            return AiproductdataenhancerFillProductDataResponse(
+            return AiproductdataenhancerFillProductDataCheckRequest(
         )
         """
 
-    def testAiproductdataenhancerFillProductDataResponse(self):
-        """Test AiproductdataenhancerFillProductDataResponse"""
+    def testAiproductdataenhancerFillProductDataCheckRequest(self):
+        """Test AiproductdataenhancerFillProductDataCheckRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

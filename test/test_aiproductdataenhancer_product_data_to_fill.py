@@ -39,7 +39,10 @@ class TestAiproductdataenhancerProductDataToFill(unittest.TestCase):
                 name = '',
                 value_set = [
                     ''
-                    ]
+                    ],
+                metadata = {
+                    'key' : ''
+                    }
             )
         else:
             return AiproductdataenhancerProductDataToFill(

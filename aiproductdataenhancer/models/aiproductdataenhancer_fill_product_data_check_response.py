@@ -18,22 +18,26 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
 from pydantic import Field
+from aiproductdataenhancer.models.aiproductdataenhancer_error import AiproductdataenhancerError
+from aiproductdataenhancer.models.aiproductdataenhancer_job_status import AiproductdataenhancerJobStatus
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class AiproductdataenhancerFillProductDataCheckResponse(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    AiproductdataenhancerFillProductDataCheckResponse
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
-    metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    product_data_filled: Optional[Dict[str, StrictStr]] = Field(default=None, alias="productDataFilled")
+    confidence_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="confidenceRate")
+    completion_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="completionRate")
+    status: Optional[AiproductdataenhancerJobStatus] = None
+    error: Optional[AiproductdataenhancerError] = None
+    __properties: ClassVar[List[str]] = ["productDataFilled", "confidenceRate", "completionRate", "status", "error"]
 
     model_config = {
         "populate_by_name": True,
@@ -53,7 +57,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of AiproductdataenhancerFillProductDataCheckResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,11 +76,14 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of error
+        if self.error:
+            _dict['error'] = self.error.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of AiproductdataenhancerFillProductDataCheckResponse from a dict"""
         if obj is None:
             return None
 
@@ -84,9 +91,11 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "valueSet": obj.get("valueSet"),
-            "metadata": obj.get("metadata")
+            "productDataFilled": obj.get("productDataFilled"),
+            "confidenceRate": obj.get("confidenceRate"),
+            "completionRate": obj.get("completionRate"),
+            "status": obj.get("status"),
+            "error": AiproductdataenhancerError.from_dict(obj.get("error")) if obj.get("error") is not None else None
         })
         return _obj
 

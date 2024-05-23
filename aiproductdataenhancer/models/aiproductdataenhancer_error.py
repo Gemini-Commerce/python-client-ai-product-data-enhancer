@@ -20,20 +20,18 @@ import json
 
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
-from pydantic import Field
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class AiproductdataenhancerError(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    AiproductdataenhancerError
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
-    metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    code: Optional[StrictStr] = None
+    message: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["code", "message"]
 
     model_config = {
         "populate_by_name": True,
@@ -53,7 +51,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of AiproductdataenhancerError from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,7 +74,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of AiproductdataenhancerError from a dict"""
         if obj is None:
             return None
 
@@ -84,9 +82,8 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "valueSet": obj.get("valueSet"),
-            "metadata": obj.get("metadata")
+            "code": obj.get("code"),
+            "message": obj.get("message")
         })
         return _obj
 

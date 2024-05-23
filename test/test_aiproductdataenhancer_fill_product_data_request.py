@@ -47,7 +47,10 @@ class TestAiproductdataenhancerFillProductDataRequest(unittest.TestCase):
                         name = '', 
                         value_set = [
                             ''
-                            ], )
+                            ], 
+                        metadata = {
+                            'key' : ''
+                            }, )
                     ],
                 domains_to_include = [
                     ''

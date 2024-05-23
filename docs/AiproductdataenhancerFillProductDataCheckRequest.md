@@ -1,4 +1,4 @@
-# # AiproductdataenhancerFillProductDataResponse
+# # AiproductdataenhancerFillProductDataCheckRequest
 
 
 ## Properties 
@@ -6,6 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**tenant_id**| **str** |   | [optional]
 **job_id**| **str** |   | [optional]
 
 

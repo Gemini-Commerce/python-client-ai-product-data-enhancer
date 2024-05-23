@@ -32,6 +32,12 @@ class TestAiProductDataEnhancerApi(unittest.TestCase):
         """
         pass
 
+    def test_ai_product_data_enhancer_fill_product_data_check(self) -> None:
+        """Test case for ai_product_data_enhancer_fill_product_data_check
+
+        """
+        pass
+
     def test_ai_product_data_enhancer_translate_data(self) -> None:
         """Test case for ai_product_data_enhancer_translate_data
 

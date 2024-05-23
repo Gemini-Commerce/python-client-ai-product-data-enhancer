@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 from pydantic import Field
 try:
     from typing import Self
@@ -30,10 +30,8 @@ class AiproductdataenhancerFillProductDataResponse(BaseModel):
     """
     AiproductdataenhancerFillProductDataResponse
     """ # noqa: E501
-    product_data_filled: Optional[Dict[str, StrictStr]] = Field(default=None, alias="productDataFilled")
-    confidence_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="confidenceRate")
-    completion_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="completionRate")
-    __properties: ClassVar[List[str]] = ["productDataFilled", "confidenceRate", "completionRate"]
+    job_id: Optional[StrictStr] = Field(default=None, alias="jobId")
+    __properties: ClassVar[List[str]] = ["jobId"]
 
     model_config = {
         "populate_by_name": True,
@@ -84,9 +82,7 @@ class AiproductdataenhancerFillProductDataResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "productDataFilled": obj.get("productDataFilled"),
-            "confidenceRate": obj.get("confidenceRate"),
-            "completionRate": obj.get("completionRate")
+            "jobId": obj.get("jobId")
         })
         return _obj
 
