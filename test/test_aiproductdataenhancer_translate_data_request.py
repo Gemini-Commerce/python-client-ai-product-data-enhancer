@@ -37,7 +37,8 @@ class TestAiproductdataenhancerTranslateDataRequest(unittest.TestCase):
         if include_optional:
             return AiproductdataenhancerTranslateDataRequest(
                 tenant_id = '',
-                language_code = 'LANGUAGE_CODE_UNKNOWN',
+                target_language = 'LANGUAGE_CODE_UNKNOWN',
+                source_language = 'LANGUAGE_CODE_UNKNOWN',
                 data_to_translate = [
                     aiproductdataenhancer.models.aiproductdataenhancer_data_to_translate.aiproductdataenhancerDataToTranslate(
                         name = '', 

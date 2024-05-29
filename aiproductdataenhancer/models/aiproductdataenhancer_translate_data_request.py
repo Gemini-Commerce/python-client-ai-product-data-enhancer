@@ -33,9 +33,10 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
     AiproductdataenhancerTranslateDataRequest
     """ # noqa: E501
     tenant_id: Optional[StrictStr] = Field(default=None, alias="tenantId")
-    language_code: Optional[AiproductdataenhancerLanguageCode] = Field(default=None, alias="languageCode")
+    target_language: Optional[AiproductdataenhancerLanguageCode] = Field(default=None, alias="targetLanguage")
+    source_language: Optional[AiproductdataenhancerLanguageCode] = Field(default=None, alias="sourceLanguage")
     data_to_translate: Optional[List[AiproductdataenhancerDataToTranslate]] = Field(default=None, alias="dataToTranslate")
-    __properties: ClassVar[List[str]] = ["tenantId", "languageCode", "dataToTranslate"]
+    __properties: ClassVar[List[str]] = ["tenantId", "targetLanguage", "sourceLanguage", "dataToTranslate"]
 
     model_config = {
         "populate_by_name": True,
@@ -94,7 +95,8 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
 
         _obj = cls.model_validate({
             "tenantId": obj.get("tenantId"),
-            "languageCode": obj.get("languageCode"),
+            "targetLanguage": obj.get("targetLanguage"),
+            "sourceLanguage": obj.get("sourceLanguage"),
             "dataToTranslate": [AiproductdataenhancerDataToTranslate.from_dict(_item) for _item in obj.get("dataToTranslate")] if obj.get("dataToTranslate") is not None else None
         })
         return _obj
