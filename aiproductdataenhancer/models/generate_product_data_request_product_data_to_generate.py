@@ -19,18 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from aiproductdataenhancer.models.aiproductdataenhancer_tone import AiproductdataenhancerTone
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class GenerateProductDataRequestProductDataToGenerate(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    GenerateProductDataRequestProductDataToGenerate
     """ # noqa: E501
     name: Optional[StrictStr] = None
     value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
     metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
+    tone: Optional[AiproductdataenhancerTone] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata", "tone"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +52,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of GenerateProductDataRequestProductDataToGenerate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,6 +75,9 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of tone
+        if self.tone:
+            _dict['tone'] = self.tone.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -82,7 +87,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of GenerateProductDataRequestProductDataToGenerate from a dict"""
         if obj is None:
             return None
 
@@ -92,7 +97,8 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "valueSet": obj.get("valueSet"),
-            "metadata": obj.get("metadata")
+            "metadata": obj.get("metadata"),
+            "tone": AiproductdataenhancerTone.from_dict(obj["tone"]) if obj.get("tone") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

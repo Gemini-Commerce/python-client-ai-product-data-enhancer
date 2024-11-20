@@ -19,21 +19,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from aiproductdataenhancer.models.aiproductdataenhancer_data_to_translate import AiproductdataenhancerDataToTranslate
+from aiproductdataenhancer.models.aiproductdataenhancer_generate_product_data_request_product_information import AiproductdataenhancerGenerateProductDataRequestProductInformation
 from aiproductdataenhancer.models.aiproductdataenhancer_language_code import AiproductdataenhancerLanguageCode
+from aiproductdataenhancer.models.generate_product_data_request_product_data_to_generate import GenerateProductDataRequestProductDataToGenerate
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AiproductdataenhancerTranslateDataRequest(BaseModel):
+class AiproductdataenhancerGenerateProductDataRequest(BaseModel):
     """
-    AiproductdataenhancerTranslateDataRequest
+    AiproductdataenhancerGenerateProductDataRequest
     """ # noqa: E501
     tenant_id: Optional[StrictStr] = Field(default=None, alias="tenantId")
-    target_language: Optional[AiproductdataenhancerLanguageCode] = Field(default=AiproductdataenhancerLanguageCode.UNKNOWN, alias="targetLanguage")
-    source_language: Optional[AiproductdataenhancerLanguageCode] = Field(default=AiproductdataenhancerLanguageCode.UNKNOWN, alias="sourceLanguage")
-    data_to_translate: Optional[List[AiproductdataenhancerDataToTranslate]] = Field(default=None, alias="dataToTranslate")
+    language_code: Optional[AiproductdataenhancerLanguageCode] = Field(default=AiproductdataenhancerLanguageCode.UNKNOWN, alias="languageCode")
+    product_information: Optional[List[AiproductdataenhancerGenerateProductDataRequestProductInformation]] = Field(default=None, alias="productInformation")
+    product_data_to_generate: Optional[List[GenerateProductDataRequestProductDataToGenerate]] = Field(default=None, alias="productDataToGenerate")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["tenantId", "targetLanguage", "sourceLanguage", "dataToTranslate"]
+    __properties: ClassVar[List[str]] = ["tenantId", "languageCode", "productInformation", "productDataToGenerate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +54,7 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerTranslateDataRequest from a JSON string"""
+        """Create an instance of AiproductdataenhancerGenerateProductDataRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,13 +77,20 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in data_to_translate (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in product_information (list)
         _items = []
-        if self.data_to_translate:
-            for _item_data_to_translate in self.data_to_translate:
-                if _item_data_to_translate:
-                    _items.append(_item_data_to_translate.to_dict())
-            _dict['dataToTranslate'] = _items
+        if self.product_information:
+            for _item_product_information in self.product_information:
+                if _item_product_information:
+                    _items.append(_item_product_information.to_dict())
+            _dict['productInformation'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in product_data_to_generate (list)
+        _items = []
+        if self.product_data_to_generate:
+            for _item_product_data_to_generate in self.product_data_to_generate:
+                if _item_product_data_to_generate:
+                    _items.append(_item_product_data_to_generate.to_dict())
+            _dict['productDataToGenerate'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -92,7 +100,7 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerTranslateDataRequest from a dict"""
+        """Create an instance of AiproductdataenhancerGenerateProductDataRequest from a dict"""
         if obj is None:
             return None
 
@@ -101,9 +109,9 @@ class AiproductdataenhancerTranslateDataRequest(BaseModel):
 
         _obj = cls.model_validate({
             "tenantId": obj.get("tenantId"),
-            "targetLanguage": obj.get("targetLanguage") if obj.get("targetLanguage") is not None else AiproductdataenhancerLanguageCode.UNKNOWN,
-            "sourceLanguage": obj.get("sourceLanguage") if obj.get("sourceLanguage") is not None else AiproductdataenhancerLanguageCode.UNKNOWN,
-            "dataToTranslate": [AiproductdataenhancerDataToTranslate.from_dict(_item) for _item in obj["dataToTranslate"]] if obj.get("dataToTranslate") is not None else None
+            "languageCode": obj.get("languageCode") if obj.get("languageCode") is not None else AiproductdataenhancerLanguageCode.UNKNOWN,
+            "productInformation": [AiproductdataenhancerGenerateProductDataRequestProductInformation.from_dict(_item) for _item in obj["productInformation"]] if obj.get("productInformation") is not None else None,
+            "productDataToGenerate": [GenerateProductDataRequestProductDataToGenerate.from_dict(_item) for _item in obj["productDataToGenerate"]] if obj.get("productDataToGenerate") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

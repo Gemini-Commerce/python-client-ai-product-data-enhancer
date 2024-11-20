@@ -17,20 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class AiproductdataenhancerGenerateProductDataResponse(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    AiproductdataenhancerGenerateProductDataResponse
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
-    metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
+    product_data_generated: Optional[Dict[str, StrictStr]] = Field(default=None, alias="productDataGenerated")
+    completion_rate: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, alias="completionRate")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    __properties: ClassVar[List[str]] = ["productDataGenerated", "completionRate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of AiproductdataenhancerGenerateProductDataResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +81,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of AiproductdataenhancerGenerateProductDataResponse from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +89,8 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "valueSet": obj.get("valueSet"),
-            "metadata": obj.get("metadata")
+            "productDataGenerated": obj.get("productDataGenerated"),
+            "completionRate": obj.get("completionRate")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

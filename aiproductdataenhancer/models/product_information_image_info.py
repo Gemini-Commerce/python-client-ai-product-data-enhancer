@@ -17,20 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class ProductInformationImageInfo(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    ProductInformationImageInfo
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
-    metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
+    url: Optional[StrictStr] = None
+    metadata: Optional[Dict[str, StrictStr]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    __properties: ClassVar[List[str]] = ["url", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +49,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of ProductInformationImageInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +81,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of ProductInformationImageInfo from a dict"""
         if obj is None:
             return None
 
@@ -90,8 +89,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "valueSet": obj.get("valueSet"),
+            "url": obj.get("url"),
             "metadata": obj.get("metadata")
         })
         # store additional fields in additional_properties

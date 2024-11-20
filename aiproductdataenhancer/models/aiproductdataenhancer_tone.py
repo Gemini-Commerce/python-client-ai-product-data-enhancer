@@ -19,18 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from aiproductdataenhancer.models.aiproductdataenhancer_tone_type import AiproductdataenhancerToneType
 from typing import Optional, Set
 from typing_extensions import Self
 
-class AiproductdataenhancerProductDataToFill(BaseModel):
+class AiproductdataenhancerTone(BaseModel):
     """
-    AiproductdataenhancerProductDataToFill
+    AiproductdataenhancerTone
     """ # noqa: E501
-    name: Optional[StrictStr] = None
-    value_set: Optional[List[StrictStr]] = Field(default=None, alias="valueSet")
-    metadata: Optional[Dict[str, StrictStr]] = Field(default=None, description="Metadata is an optional field to provide additional information to the AI like, max length, min length, field description, etc.")
+    tone_type: Optional[AiproductdataenhancerToneType] = Field(default=AiproductdataenhancerToneType.UNKNOWN, alias="toneType")
+    custom_tone: Optional[StrictStr] = Field(default=None, alias="customTone")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["name", "valueSet", "metadata"]
+    __properties: ClassVar[List[str]] = ["toneType", "customTone"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a JSON string"""
+        """Create an instance of AiproductdataenhancerTone from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -82,7 +82,7 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of AiproductdataenhancerProductDataToFill from a dict"""
+        """Create an instance of AiproductdataenhancerTone from a dict"""
         if obj is None:
             return None
 
@@ -90,9 +90,8 @@ class AiproductdataenhancerProductDataToFill(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
-            "valueSet": obj.get("valueSet"),
-            "metadata": obj.get("metadata")
+            "toneType": obj.get("toneType") if obj.get("toneType") is not None else AiproductdataenhancerToneType.UNKNOWN,
+            "customTone": obj.get("customTone")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
